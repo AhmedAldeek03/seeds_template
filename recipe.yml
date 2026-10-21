@@ -1,17 +1,29 @@
 name: 'Seeds template'
-description: 'A complete Seeds site: the Seeds foundation plus News & Events, Local Reach, Slider, FAQ, Gallery, Partners, Team, Publications, Contact form and Newsletter.'
+description: 'A Seeds site with our feature recipes ready to add from Extend > Browse: News & Events, Local Reach, Slider, FAQ, Gallery, Partners, Team, Publications, Contact form and Newsletter.'
 type: Site
 recipes:
-  # The Seeds foundation must come first, so the feature recipes build on
-  # Seeds' own media types, editor and toolbar.
   - seeds_base
-  - media_center_seeds
-  - local_reach_recipe
-  - slider_recipe
-  - faq_recipe
-  - gallery_recipe
-  - partners_recipe
-  - team_recipe
-  - publications_recipe
-  - contact_form_recipe
-  - newsletter_recipe
+install:
+  # Manage fields, Manage form display and Manage display screens. A fresh
+  # Seeds site leaves this off, but site builders need it.
+  - field_ui
+  - project_browser
+  # Gives Project Browser its one-click Install button. Package Manager is
+  # still experimental in Drupal 11.4: each project must set
+  # $settings['testing_package_manager'] = TRUE; in settings.php.
+  - package_manager
+config:
+  actions:
+    # Show our feature recipes as "Recommended add-ons". The list ships with
+    # this recipe (content/file/recommended-add-ons.yaml).
+    project_browser.admin_settings:
+      simpleConfigUpdate:
+        enabled_sources:
+          recommended:
+            uri: 'public://recommended-add-ons.yaml'
+            ttl: 86400
+        default_source: recommended
+        # One-click Install for editors. The recipes are already downloaded
+        # with the template, so Install only applies them.
+        allow_ui_install: true
+        max_selections: 1

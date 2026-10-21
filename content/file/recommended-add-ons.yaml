@@ -1,0 +1,104 @@
+#
+# Seeds recommended add-ons: our feature recipes, shown in Extend > Browse.
+# They are already downloaded with the template, so applying one needs no
+# download.
+#
+drupal/media_center_seeds:
+  title: 'News & Events'
+  type: recipe
+  logo: null
+  core: '^11.3'
+  machineName: media_center_seeds
+  body:
+    summary: 'News and Event content types with home page and compiled listing blocks, upcoming events, and Seeds UI cards.'
+  packageName: drupal/media_center_seeds
+
+drupal/local_reach_recipe:
+  title: 'Local Reach'
+  type: recipe
+  logo: null
+  core: '^11.3'
+  machineName: local_reach_recipe
+  body:
+    summary: 'Key figures, progress bars, ring charts, country flags and institution summary components for Canvas pages, with count-up numbers.'
+  packageName: drupal/local_reach_recipe
+
+drupal/slider_recipe:
+  title: Slider
+  type: recipe
+  logo: null
+  core: '^11.3'
+  machineName: slider_recipe
+  body:
+    summary: 'A Slide content type and a carousel block for the home page.'
+  packageName: drupal/slider_recipe
+
+drupal/faq_recipe:
+  title: FAQ
+  type: recipe
+  logo: null
+  core: '^11.3'
+  machineName: faq_recipe
+  body:
+    summary: 'Frequently asked questions with categories, shown as an accordion.'
+  packageName: drupal/faq_recipe
+
+drupal/gallery_recipe:
+  title: Gallery
+  type: recipe
+  logo: null
+  core: '^11.3'
+  machineName: gallery_recipe
+  body:
+    summary: 'Photo and video albums with home page and compiled listing blocks.'
+  packageName: drupal/gallery_recipe
+
+drupal/partners_recipe:
+  title: Partners
+  type: recipe
+  logo: null
+  core: '^11.3'
+  machineName: partners_recipe
+  body:
+    summary: 'Partner, client and sponsor logos, each linked to their website.'
+  packageName: drupal/partners_recipe
+
+drupal/team_recipe:
+  title: Team
+  type: recipe
+  logo: null
+  core: '^11.3'
+  machineName: team_recipe
+  body:
+    summary: 'Staff and board members with photos, positions and biographies.'
+  packageName: drupal/team_recipe
+
+drupal/publications_recipe:
+  title: Publications
+  type: recipe
+  logo: null
+  core: '^11.3'
+  machineName: publications_recipe
+  body:
+    summary: 'Annual reports, studies and other documents with downloadable files.'
+  packageName: drupal/publications_recipe
+
+drupal/contact_form_recipe:
+  title: 'Contact form'
+  type: recipe
+  logo: null
+  core: '^11.3'
+  machineName: contact_form_recipe
+  body:
+    summary: 'A "Contact us" form at /contact-us that emails every message to the site address.'
+  packageName: drupal/contact_form_recipe
+
+drupal/newsletter_recipe:
+  title: Newsletter
+  type: recipe
+  logo: null
+  core: '^11.3'
+  machineName: newsletter_recipe
+  body:
+    summary: 'Newsletters with Simplenews: a default newsletter, newsletter issues and visitor subscriptions.'
+  packageName: drupal/newsletter_recipe
