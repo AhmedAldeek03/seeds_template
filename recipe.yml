@@ -4,6 +4,18 @@ type: Site
 recipes:
   - seeds_base
 install:
+  # Optional Seeds modules that we turn on for every site. (Seeds Page and
+  # Seeds Performance are offered as add-ons instead.)
+  - seeds_layouts
+  - seeds_seo
+  - seeds_administration
+  # Seeds Page's config needs it but Seeds Page does not declare it, so the
+  # Seeds Page add-on cannot be enabled without it.
+  - responsive_image_preload
+  # Seeds SEO's dependencies, listed so their default config is imported.
+  - metatag
+  - simple_sitemap
+  - redirect
   # Manage fields, Manage form display and Manage display screens. A fresh
   # Seeds site leaves this off, but site builders need it.
   - field_ui
@@ -13,6 +25,14 @@ install:
   # $settings['testing_package_manager'] = TRUE; in settings.php.
   - package_manager
 config:
+  # A recipe skips a module's default config, so bring it in for the modules
+  # above: column and layout settings, meta tag defaults, sitemap settings.
+  import:
+    seeds_layouts: '*'
+    seeds_administration: '*'
+    metatag: '*'
+    simple_sitemap: '*'
+    redirect: '*'
   actions:
     # Show our feature recipes as "Recommended add-ons". The list ships with
     # this recipe (content/file/recommended-add-ons.yaml).
