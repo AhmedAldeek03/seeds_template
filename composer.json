@@ -1,0 +1,21 @@
+{
+    "name": "drupal/seeds_template",
+    "description": "A complete Seeds site template: the Seeds foundation plus News & Events, Local Reach, Slider, FAQ, Gallery, Partners, Team, Publications, Contact form and Newsletter.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^11.3",
+        "drupal/seeds_base": "1.0.x-dev@dev",
+        "drupal/media_center_recipe": "1.0.x-dev@dev",
+        "drupal/media_center_seeds": "1.0.x-dev@dev",
+        "drupal/local_reach_recipe": "1.0.x-dev@dev",
+        "drupal/slider_recipe": "1.0.x-dev@dev",
+        "drupal/faq_recipe": "1.0.x-dev@dev",
+        "drupal/gallery_recipe": "1.0.x-dev@dev",
+        "drupal/partners_recipe": "1.0.x-dev@dev",
+        "drupal/team_recipe": "1.0.x-dev@dev",
+        "drupal/publications_recipe": "1.0.x-dev@dev",
+        "drupal/contact_form_recipe": "1.0.x-dev@dev",
+        "drupal/newsletter_recipe": "1.0.x-dev@dev"
+    }
+}

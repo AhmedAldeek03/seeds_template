@@ -1,0 +1,17 @@
+name: 'Seeds template'
+description: 'A complete Seeds site: the Seeds foundation plus News & Events, Local Reach, Slider, FAQ, Gallery, Partners, Team, Publications, Contact form and Newsletter.'
+type: Site
+recipes:
+  # The Seeds foundation must come first, so the feature recipes build on
+  # Seeds' own media types, editor and toolbar.
+  - seeds_base
+  - media_center_seeds
+  - local_reach_recipe
+  - slider_recipe
+  - faq_recipe
+  - gallery_recipe
+  - partners_recipe
+  - team_recipe
+  - publications_recipe
+  - contact_form_recipe
+  - newsletter_recipe
