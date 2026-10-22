@@ -1,0 +1,15 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: seeds_social
+label: 'Social media share (1200×630)'
+effects:
+  5b0d9f7e-3c1a-4f6e-9d2b-8a7c6e5f4d31:
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 630
+      crop_type: focal_point

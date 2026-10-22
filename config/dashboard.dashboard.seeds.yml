@@ -1,0 +1,48 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.content_recent
+    - views.view.who_s_new
+  module:
+    - layout_builder
+    - views
+id: seeds
+label: Dashboard
+description: 'The landing page for editors and site admins: recent content and new users.'
+weight: 0
+layout:
+  -
+    layout_id: layout_twocol_section
+    layout_settings:
+      label: ''
+      context_mapping: {  }
+      column_widths: 67-33
+    components:
+      0f6c8a52-7d3e-4b1a-9c2f-5e8d7a6b4c31:
+        uuid: 0f6c8a52-7d3e-4b1a-9c2f-5e8d7a6b4c31
+        region: first
+        configuration:
+          id: 'views_block:content_recent-block_1'
+          label: 'Recent content'
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: 'Recent content'
+          items_per_page: none
+        weight: 0
+        additional: {  }
+      9a1b2c3d-4e5f-4a6b-8c7d-0e1f2a3b4c5d:
+        uuid: 9a1b2c3d-4e5f-4a6b-8c7d-0e1f2a3b4c5d
+        region: second
+        configuration:
+          id: 'views_block:who_s_new-block_1'
+          label: "Who's new"
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: "Who's new"
+          items_per_page: none
+        weight: 0
+        additional: {  }
+    third_party_settings: {  }

@@ -14,8 +14,14 @@ install:
   - responsive_image_preload
   # Seeds SEO's dependencies, listed so their default config is imported.
   - metatag
+  - metatag_open_graph
   - simple_sitemap
   - redirect
+  - length_indicator
+  # SEO fields: the SEO analysis field (Yoast) and fallback tokens such as
+  # [node:field_seo_title|node:title] in the meta tag defaults.
+  - yoast_seo
+  - token_or
   # Manage fields, Manage form display and Manage display screens. A fresh
   # Seeds site leaves this off, but site builders need it.
   - field_ui
@@ -24,7 +30,41 @@ install:
   # still experimental in Drupal 11.4: each project must set
   # $settings['testing_package_manager'] = TRUE; in settings.php.
   - package_manager
+  # ECA (automation): the same modules Drupal CMS enables, plus the visual
+  # modeler. Ships the "add SEO fields to new content types" model.
+  - eca
+  - eca_base
+  - eca_config
+  - eca_content
+  - eca_form
+  - eca_misc
+  - eca_render
+  - eca_ui
+  - eca_user
+  - modeler
+  # Editor experience, adopted from Drupal CMS.
+  - autosave_form
+  - scheduler
+  - media_library_bulk_upload
+  - media_library_edit
+  - media_file_delete
+  - svg_image
+  - sam
+  - tagify
+  - dashboard
+  - login_emailusername
+  # Languages and navigation, adopted from Drupal CMS.
+  - config_language_lock
+  - easy_breadcrumb
 config:
+  # Field storages influence the database layout, so they must match exactly.
+  # Every feature recipe with its own pages ships the same storages.
+  strict:
+    - field.storage.node.field_meta_tags
+    - field.storage.node.field_seo_analysis
+    - field.storage.node.field_seo_description
+    - field.storage.node.field_seo_image
+    - field.storage.node.field_seo_title
   # A recipe skips a module's default config, so bring it in for the modules
   # above: column and layout settings, meta tag defaults, sitemap settings.
   import:
@@ -33,6 +73,9 @@ config:
     metatag: '*'
     simple_sitemap: '*'
     redirect: '*'
+    yoast_seo: '*'
+    scheduler: '*'
+    easy_breadcrumb: '*'
   actions:
     # Show our feature recipes as "Recommended add-ons". The list ships with
     # this recipe (content/file/recommended-add-ons.yaml).
@@ -47,3 +90,53 @@ config:
         # with the template, so Install only applies them.
         allow_ui_install: true
         max_selections: 1
+
+    # Meta tags for all content. Each tag uses the first value that is filled
+    # in: the SEO fields first, then the Seeds fields every feature recipe
+    # shares (field_body, field_media). Seeds image media keeps its file in
+    # field_image.
+    metatag.metatag_defaults.node:
+      set:
+        property_name: tags
+        value:
+          canonical_url: '[node:url]'
+          title: '[node:field_seo_title|node:title] | [site:name]'
+          description: '[node:field_seo_description|node:field_body:summary|node:field_body-smart-trim]'
+          og_type: article
+          og_url: '[node:url]'
+          og_site_name: '[site:name]'
+          og_title: '[node:field_seo_title|node:title]'
+          og_description: '[node:field_seo_description|node:field_body:summary|node:field_body-smart-trim]'
+          og_image: '[node:field_seo_image:entity:field_image:seeds_social|node:field_media:entity:field_image:seeds_social]'
+          og_image_width: '[node:field_seo_image:entity:field_image:seeds_social:width|node:field_media:entity:field_image:seeds_social:width]'
+          og_image_height: '[node:field_seo_image:entity:field_image:seeds_social:height|node:field_media:entity:field_image:seeds_social:height]'
+          og_image_alt: '[node:field_seo_image:entity:field_image:alt|node:field_media:entity:field_image:alt]'
+          og_updated_time: '[node:changed:custom:c]'
+    metatag.settings:
+      simpleConfigUpdate:
+        # Body text can be long: keep descriptions to what search engines show.
+        tag_trim_maxlength.metatag_maxlength_description: 160
+        tag_trim_maxlength.metatag_maxlength_og_description: 200
+
+    # Same editor settings as Drupal CMS.
+    autosave_form.settings:
+      simpleConfigUpdate:
+        allowed_content_entity_types:
+          node:
+            bundles: []
+    media_file_delete.settings:
+      simpleConfigUpdate:
+        delete_file_default: true
+        disable_delete_control: true
+    scheduler.settings:
+      simpleConfigUpdate:
+        hide_seconds: true
+    tagify.settings:
+      simpleConfigUpdate:
+        set_default_widget: true
+    easy_breadcrumb.settings:
+      simpleConfigUpdate:
+        applies_admin_routes: false
+        add_structured_data_json_ld: true
+        hide_single_home_item: true
+        capitalizator_mode: none

@@ -1,0 +1,307 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - eca_base
+    - eca_config
+    - eca_content
+    - modeler_api
+third_party_settings:
+  modeler_api:
+    modeler_id: workflow_modeler
+    label: 'Seeds: add SEO fields to new content types'
+id: seeds_seo_fields
+weight: 0
+template: null
+events:
+  content_type_created:
+    plugin: 'content_entity:bundlecreate'
+    label: 'Content type created'
+    configuration:
+      type: 'node _all'
+    successors:
+      -
+        id: set_content_type
+        condition: has_own_page
+conditions:
+  has_own_page:
+    plugin: eca_scalar
+    label: 'Has its own page?'
+    configuration:
+      negate: true
+      left: ',faq,partner,slider,simplenews_issue,'
+      right: ',[event:bundle],'
+      operator: contains
+      type: value
+      case: false
+gateways: {  }
+actions:
+  set_content_type:
+    label: 'Remember the content type'
+    plugin: eca_token_set_value
+    configuration:
+      token_name: content_type
+      token_value: '[event:bundle]'
+      use_yaml: false
+      validate_yaml: false
+    successors:
+      -
+        id: create_field_seo_title
+        condition: ''
+  create_field_seo_title:
+    label: 'Add SEO title'
+    plugin: eca_config_action
+    configuration:
+      action_id: 'entity_create:createIfNotExists'
+      config_name: 'field.field.node.[content_type].field_seo_title'
+      data: |-
+        field_name: field_seo_title
+        entity_type: node
+        bundle: '[content_type]'
+        label: 'SEO title'
+        description: 'Overrides the page title shown in search results and when shared. Leave empty to use the title.'
+    successors:
+      -
+        id: create_field_seo_description
+        condition: ''
+  create_field_seo_description:
+    label: 'Add SEO description'
+    plugin: eca_config_action
+    configuration:
+      action_id: 'entity_create:createIfNotExists'
+      config_name: 'field.field.node.[content_type].field_seo_description'
+      data: |-
+        field_name: field_seo_description
+        entity_type: node
+        bundle: '[content_type]'
+        label: 'SEO description'
+        description: 'Shown in search results and when shared. Leave empty to use a trimmed version of the content.'
+    successors:
+      -
+        id: create_field_seo_image
+        condition: ''
+  create_field_seo_image:
+    label: 'Add SEO image'
+    plugin: eca_config_action
+    configuration:
+      action_id: 'entity_create:createIfNotExists'
+      config_name: 'field.field.node.[content_type].field_seo_image'
+      data: |-
+        field_name: field_seo_image
+        entity_type: node
+        bundle: '[content_type]'
+        label: 'SEO image'
+        description: 'Shown when the page is shared on social media. Leave empty to use the main image.'
+        settings:
+          handler: 'default:media'
+          handler_settings:
+            target_bundles:
+              image: image
+    successors:
+      -
+        id: create_field_seo_analysis
+        condition: ''
+  create_field_seo_analysis:
+    label: 'Add SEO analysis'
+    plugin: eca_config_action
+    configuration:
+      action_id: 'entity_create:createIfNotExists'
+      config_name: 'field.field.node.[content_type].field_seo_analysis'
+      data: |-
+        field_name: field_seo_analysis
+        entity_type: node
+        bundle: '[content_type]'
+        label: 'SEO analysis'
+        description: 'Pick the main keyword this page is about.'
+    successors:
+      -
+        id: create_field_meta_tags
+        condition: ''
+  create_field_meta_tags:
+    label: 'Add Meta tags'
+    plugin: eca_config_action
+    configuration:
+      action_id: 'entity_create:createIfNotExists'
+      config_name: 'field.field.node.[content_type].field_meta_tags'
+      data: |-
+        field_name: field_meta_tags
+        entity_type: node
+        bundle: '[content_type]'
+        label: 'Meta tags'
+        description: 'Advanced settings, such as hiding this page from search engines.'
+        translatable: false
+    successors:
+      -
+        id: limit_meta_tags
+        condition: ''
+  limit_meta_tags:
+    label: 'Meta tags field: advanced tags only'
+    plugin: eca_config_action
+    configuration:
+      action_id: simpleConfigUpdate
+      config_name: metatag.settings
+      data: |-
+        entity_type_groups.node.[content_type]:
+          advanced: advanced
+    successors:
+      -
+        id: create_form_display
+        condition: ''
+  create_form_display:
+    label: 'Create form display'
+    plugin: eca_config_action
+    configuration:
+      action_id: 'entity_create:createIfNotExists'
+      config_name: 'core.entity_form_display.node.[content_type].default'
+      data: |-
+        targetEntityType: node
+        bundle: '[content_type]'
+        mode: default
+        status: true
+    successors:
+      -
+        id: show_field_seo_title
+        condition: ''
+  show_field_seo_title:
+    label: 'Show SEO title'
+    plugin: eca_config_action
+    configuration:
+      action_id: 'entity_method:core.entity_form_display:setComponent'
+      config_name: 'core.entity_form_display.node.[content_type].default'
+      data: |-
+        name: field_seo_title
+        options:
+          type: string_textfield
+          weight: 1
+          region: content
+          settings:
+            size: 60
+            placeholder: ''
+          third_party_settings:
+            length_indicator:
+              indicator: true
+              indicator_opt:
+                optimin: 30
+                optimax: 60
+                tolerance: 10
+    successors:
+      -
+        id: show_field_seo_description
+        condition: ''
+  show_field_seo_description:
+    label: 'Show SEO description'
+    plugin: eca_config_action
+    configuration:
+      action_id: 'entity_method:core.entity_form_display:setComponent'
+      config_name: 'core.entity_form_display.node.[content_type].default'
+      data: |-
+        name: field_seo_description
+        options:
+          type: string_textarea
+          weight: 2
+          region: content
+          settings:
+            rows: 3
+            placeholder: ''
+          third_party_settings:
+            length_indicator:
+              indicator: true
+              indicator_opt:
+                optimin: 120
+                optimax: 160
+                tolerance: 20
+    successors:
+      -
+        id: show_field_seo_image
+        condition: ''
+  show_field_seo_image:
+    label: 'Show SEO image'
+    plugin: eca_config_action
+    configuration:
+      action_id: 'entity_method:core.entity_form_display:setComponent'
+      config_name: 'core.entity_form_display.node.[content_type].default'
+      data: |-
+        name: field_seo_image
+        options:
+          type: media_library_widget
+          weight: 3
+          region: content
+          settings:
+            media_types: {  }
+          third_party_settings:
+            media_library_edit:
+              show_edit: true
+              edit_form_mode: default
+    successors:
+      -
+        id: show_field_seo_analysis
+        condition: ''
+  show_field_seo_analysis:
+    label: 'Show SEO analysis'
+    plugin: eca_config_action
+    configuration:
+      action_id: 'entity_method:core.entity_form_display:setComponent'
+      config_name: 'core.entity_form_display.node.[content_type].default'
+      data: |-
+        name: field_seo_analysis
+        options:
+          type: yoast_seo_widget
+          weight: 4
+          region: content
+          settings:
+            render_theme: null
+            render_view_mode: default
+            edit_title: false
+            edit_description: false
+    successors:
+      -
+        id: show_field_meta_tags
+        condition: ''
+  show_field_meta_tags:
+    label: 'Show Meta tags in the sidebar'
+    plugin: eca_config_action
+    configuration:
+      action_id: 'entity_method:core.entity_form_display:setComponent'
+      config_name: 'core.entity_form_display.node.[content_type].default'
+      data: |-
+        name: field_meta_tags
+        options:
+          type: metatag_firehose
+          weight: 30
+          region: content
+          settings:
+            sidebar: true
+            use_details: true
+    successors:
+      -
+        id: group_seo_fields
+        condition: ''
+  group_seo_fields:
+    label: 'Group SEO fields'
+    plugin: eca_config_action
+    configuration:
+      action_id: 'entity_method:core.entity_form_display:setThirdPartySetting'
+      config_name: 'core.entity_form_display.node.[content_type].default'
+      data: |-
+        module: field_group
+        key: group_seo
+        value:
+          children:
+            - field_seo_title
+            - field_seo_description
+            - field_seo_image
+            - field_seo_analysis
+          label: SEO
+          region: content
+          parent_name: ''
+          weight: 50
+          format_type: details
+          format_settings:
+            classes: ''
+            show_empty_fields: false
+            id: ''
+            label_as_html: false
+            open: false
+            description: ''
+            required_fields: false
+    successors: {  }
