@@ -5,8 +5,9 @@ recipes:
   - seeds_base
 install:
   # Optional Seeds modules that we turn on for every site. (Seeds Page and
-  # Seeds Performance are offered as add-ons instead.)
-  - seeds_layouts
+  # Seeds Performance are offered as add-ons instead.) Seeds Layouts is left
+  # out: it type-hints the concrete EntityTypeManager class, so it crashes any
+  # site that also uses Trash. Seeds site uses Canvas for page layouts.
   - seeds_seo
   - seeds_administration
   # Seeds Page's config needs it but Seeds Page does not declare it, so the
@@ -66,9 +67,8 @@ config:
     - field.storage.node.field_seo_image
     - field.storage.node.field_seo_title
   # A recipe skips a module's default config, so bring it in for the modules
-  # above: column and layout settings, meta tag defaults, sitemap settings.
+  # above: meta tag defaults, sitemap settings.
   import:
-    seeds_layouts: '*'
     seeds_administration: '*'
     metatag: '*'
     simple_sitemap: '*'

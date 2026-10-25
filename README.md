@@ -27,7 +27,7 @@ Installed add-ons show **Installed** and can be reapplied.
 
 | Area | Modules |
 |---|---|
-| Seeds | Seeds base (all Seeds modules and themes), Seeds Layouts, Seeds SEO, Seeds Administration |
+| Seeds | Seeds base (all Seeds modules and themes), Seeds SEO, Seeds Administration |
 | SEO | Metatag (with Open Graph), Simple XML Sitemap, Redirect, Length indicator, Yoast SEO, Token OR |
 | Automation | ECA (Core, Base, Config, Content, Form, Misc, Render, UI, User) and the Workflow Modeler |
 | Editor experience | Autosave Form, Scheduler, Media Library Bulk Upload, Media Library Edit, Media File Delete, SVG Image, SAM, Tagify, Dashboard, Login with email or username |
