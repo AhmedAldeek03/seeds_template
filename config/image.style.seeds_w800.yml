@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies: {  }
+name: seeds_w800
+label: 'Seeds: 800 wide (WebP)'
+effects:
+  b2c9a793-05f3-4112-beca-4ca7998e22c6:
+    uuid: b2c9a793-05f3-4112-beca-4ca7998e22c6
+    id: image_scale
+    weight: 1
+    data:
+      width: 800
+      height: null
+      upscale: false
+  6cfb0a7a-b8db-48bb-b164-1edfccc6bf2e:
+    uuid: 6cfb0a7a-b8db-48bb-b164-1edfccc6bf2e
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

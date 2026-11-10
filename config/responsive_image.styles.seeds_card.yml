@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.seeds_w480
+    - image.style.seeds_w800
+    - image.style.seeds_w1200
+id: seeds_card
+label: 'Seeds: card'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(min-width: 1200px) 400px, (min-width: 768px) 50vw, 100vw'
+      sizes_image_styles:
+        - seeds_w480
+        - seeds_w800
+        - seeds_w1200
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+breakpoint_group: responsive_image
+fallback_image_style: seeds_w800

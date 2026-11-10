@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.seeds_w480
+id: seeds_logo
+label: 'Seeds: logo'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '240px'
+      sizes_image_styles:
+        - seeds_w480
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+breakpoint_group: responsive_image
+fallback_image_style: seeds_w480

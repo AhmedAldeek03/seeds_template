@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies: {  }
+name: seeds_w1600
+label: 'Seeds: 1600 wide (WebP)'
+effects:
+  7bb07af1-d161-44da-98a3-71f3bc3f438d:
+    uuid: 7bb07af1-d161-44da-98a3-71f3bc3f438d
+    id: image_scale
+    weight: 1
+    data:
+      width: 1600
+      height: null
+      upscale: false
+  67fa89d0-caf1-4020-a776-a9c8b7c3b8ca:
+    uuid: 67fa89d0-caf1-4020-a776-a9c8b7c3b8ca
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

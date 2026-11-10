@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.seeds_w800
+    - image.style.seeds_w1200
+    - image.style.seeds_w1600
+    - image.style.seeds_w2400
+id: seeds_wide
+label: 'Seeds: wide (full width of the content)'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(min-width: 1200px) 1140px, 100vw'
+      sizes_image_styles:
+        - seeds_w800
+        - seeds_w1200
+        - seeds_w1600
+        - seeds_w2400
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+breakpoint_group: responsive_image
+fallback_image_style: seeds_w1200

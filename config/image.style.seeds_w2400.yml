@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies: {  }
+name: seeds_w2400
+label: 'Seeds: 2400 wide (WebP)'
+effects:
+  6be868bc-2c62-42cd-a4b4-c03c986a59ac:
+    uuid: 6be868bc-2c62-42cd-a4b4-c03c986a59ac
+    id: image_scale
+    weight: 1
+    data:
+      width: 2400
+      height: null
+      upscale: false
+  44e60cd1-bd11-4a57-8a1a-f23e51ea5771:
+    uuid: 44e60cd1-bd11-4a57-8a1a-f23e51ea5771
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

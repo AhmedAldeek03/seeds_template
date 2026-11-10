@@ -34,10 +34,26 @@ Installed add-ons show **Installed** and can be reapplied.
 | Languages and navigation | Config Language Lock, Easy Breadcrumb |
 | Site building | Field UI, Project Browser, Package Manager |
 | Page building | Drupal Canvas (visual pages built from components) |
+| Images | Responsive Image, SVG Image |
 
 Pages are built with Canvas. Layout Builder is not used for pages, so the Seeds modules built on it
 (Seeds Layouts, Seeds Page) are not installed or offered as add-ons. Core's Layout Builder module
 stays on only because the Dashboard module needs it for its dashboards.
+
+## Images
+
+- **Responsive image styles**, all WebP: `seeds_card` (cards), `seeds_wide` (full pages) and
+  `seeds_logo` (partner logos), built from `seeds_w480` to `seeds_w2400`. The Seeds site theme
+  uses them for `field_media` in every feature, whatever image style a feature's display sets.
+- **SVG and WebP** are allowed in image media (logos, icons), besides PNG, GIF and JPEG. SVGs are
+  shown at their own size: image styles can't resize them.
+
+## Menu promo cards
+
+Menu links have an optional **Promo card** group: an image (`field_media`), a label
+(`field_plain_text`, for example *News*) and a link (`field_link`, its text is the card title).
+For a top-level main menu item with sub-items, the Seeds site theme shows the card beside the
+links in its menu panel, like a featured article or product.
 
 Cookie consent (Klaro) is not included yet.
 

@@ -56,6 +56,15 @@ install:
   # Visual page building with Drupal Canvas, the page builder Drupal CMS uses.
   # Needs the restrict_ip patch listed in the Seeds base README.
   - canvas
+  # Images: responsive image styles (config/: WebP sizes from 480 to 2400px
+  # wide; the Seeds site theme picks one per view mode), and SVG in image
+  # media (svg_image, above, shows SVGs at their own size).
+  - responsive_image
+  # Promo card fields on menu links (config/): an image, a label and a
+  # link, shown in the menu panel of a top-level item by the Seeds site theme.
+  - link
+  - media_library
+  - field_group
 config:
   # Field storages influence the database layout, so they must match exactly.
   # Every feature recipe with its own pages ships the same storages.
@@ -88,6 +97,28 @@ config:
       - image.style.canvas_avatar
       - image.style.canvas_parametrized_width
   actions:
+    # Image media accept SVG (logos, icons) and WebP besides PNG, GIF and JPEG.
+    field.field.media.image.field_image:
+      set:
+        property_name: settings
+        value:
+          handler: 'default:file'
+          handler_settings: {  }
+          file_directory: '[date:custom:Y]-[date:custom:m]'
+          file_extensions: 'png gif jpg jpeg webp svg'
+          max_filesize: ''
+          max_resolution: ''
+          min_resolution: ''
+          alt_field: true
+          alt_field_required: false
+          title_field: true
+          title_field_required: false
+          default_image:
+            uuid: ''
+            alt: ''
+            title: ''
+            width: null
+            height: null
     # Show our feature recipes as "Recommended add-ons". The list ships with
     # this recipe (content/file/recommended-add-ons.yaml).
     project_browser.admin_settings:

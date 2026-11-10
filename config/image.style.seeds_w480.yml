@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies: {  }
+name: seeds_w480
+label: 'Seeds: 480 wide (WebP)'
+effects:
+  854eb871-0de0-4515-9520-ac0c7690167b:
+    uuid: 854eb871-0de0-4515-9520-ac0c7690167b
+    id: image_scale
+    weight: 1
+    data:
+      width: 480
+      height: null
+      upscale: false
+  567b81af-b904-42f0-9a47-e9909af492ff:
+    uuid: 567b81af-b904-42f0-9a47-e9909af492ff
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp
