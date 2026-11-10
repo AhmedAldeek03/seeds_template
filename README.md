@@ -10,12 +10,12 @@ under **Extend > Browse > Recommended add-ons**. An admin adds a feature with on
 
 | Add-on | Adds |
 |---|---|
-| News & Events | News and Event types, home and compiled blocks, Seeds UI cards |
+| News & Events | News and Event types, compiled blocks, Seeds UI cards, home page blocks as card carousels (Swiper) |
 | Local Reach | Key figures, progress bars, ring charts, country flags, institution summary (Canvas) |
-| Slider | Slide type and carousel |
+| Slider | Slide type and a full-width carousel block (Swiper, no library to download) |
 | FAQ | FAQ type with categories, accordion block |
 | Gallery | Photo and video albums |
-| Partners | Partner and client logos |
+| Partners | Partner and client logos, with an optional description; logos block and cards block |
 | Team | Staff and board members |
 | Publications | Annual reports and studies with files |
 | Contact form | "Contact us" form at `/contact-us` |
@@ -30,7 +30,7 @@ Installed add-ons show **Installed** and can be reapplied.
 | Seeds | Seeds base (all Seeds modules and themes), Seeds SEO, Seeds Administration |
 | SEO | Metatag (with Open Graph), Simple XML Sitemap, Redirect, Length indicator, Yoast SEO, Token OR |
 | Automation | ECA (Core, Base, Config, Content, Form, Misc, Render, UI, User) and the Workflow Modeler |
-| Editor experience | Autosave Form, Scheduler, Media Library Bulk Upload, Media Library Edit, Media File Delete, SVG Image, SAM, Tagify, Dashboard, Login with email or username |
+| Editor experience | Scheduler, Media Library Edit, SVG Image, Dashboard, Login with email or username |
 | Languages and navigation | Config Language Lock, Easy Breadcrumb |
 | Site building | Field UI, Project Browser, Package Manager |
 | Page building | Drupal Canvas (visual pages built from components) |

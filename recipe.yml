@@ -39,15 +39,14 @@ install:
   - eca_ui
   - eca_user
   - modeler
-  # Editor experience, adopted from Drupal CMS.
-  - autosave_form
+  # Editor experience, adopted from Drupal CMS after testing. Left out after
+  # testing on Seeds: Autosave Form (broke Media Library uploads), Media File
+  # Delete (deletes files that Trash should keep restorable), SAM (hides links
+  # typed after a failed save), Tagify (broken in Arabic) and Media Library
+  # Bulk Upload (barely maintained).
   - scheduler
-  - media_library_bulk_upload
   - media_library_edit
-  - media_file_delete
   - svg_image
-  - sam
-  - tagify
   - dashboard
   - login_emailusername
   # Languages and navigation, adopted from Drupal CMS.
@@ -161,21 +160,9 @@ config:
         tag_trim_maxlength.metatag_maxlength_og_description: 200
 
     # Same editor settings as Drupal CMS.
-    autosave_form.settings:
-      simpleConfigUpdate:
-        allowed_content_entity_types:
-          node:
-            bundles: []
-    media_file_delete.settings:
-      simpleConfigUpdate:
-        delete_file_default: true
-        disable_delete_control: true
     scheduler.settings:
       simpleConfigUpdate:
         hide_seconds: true
-    tagify.settings:
-      simpleConfigUpdate:
-        set_default_widget: true
     easy_breadcrumb.settings:
       simpleConfigUpdate:
         applies_admin_routes: false
