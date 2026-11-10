@@ -99,8 +99,10 @@ condition at **Configuration > Workflow > ECA**.
 3. Install the site from the template:
 
    ```bash
-   drush site:install ../recipes/seeds_template --account-name=admin --site-name="My site"
+   drush site:install ../recipes/seeds_template --account-name=admin --account-pass=admin --site-name="My site"
    ```
+
+   This logs in as **admin / admin**. Change the password on any site that is not local.
 
 With DDEV, put `ddev` before the commands.
 
