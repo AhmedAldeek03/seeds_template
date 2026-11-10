@@ -33,6 +33,11 @@ Installed add-ons show **Installed** and can be reapplied.
 | Editor experience | Autosave Form, Scheduler, Media Library Bulk Upload, Media Library Edit, Media File Delete, SVG Image, SAM, Tagify, Dashboard, Login with email or username |
 | Languages and navigation | Config Language Lock, Easy Breadcrumb |
 | Site building | Field UI, Project Browser, Package Manager |
+| Page building | Drupal Canvas (visual pages built from components) |
+
+Pages are built with Canvas. Layout Builder is not used for pages, so the Seeds modules built on it
+(Seeds Layouts, Seeds Page) are not installed or offered as add-ons. Core's Layout Builder module
+stays on only because the Dashboard module needs it for its dashboards.
 
 Cookie consent (Klaro) is not included yet.
 

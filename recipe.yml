@@ -4,15 +4,11 @@ type: Site
 recipes:
   - seeds_base
 install:
-  # Optional Seeds modules that we turn on for every site. (Seeds Page and
-  # Seeds Performance are offered as add-ons instead.) Seeds Layouts is left
-  # out: it type-hints the concrete EntityTypeManager class, so it crashes any
-  # site that also uses Trash. Seeds site uses Canvas for page layouts.
+  # Optional Seeds modules that we turn on for every site. (Seeds Performance
+  # is offered as an add-on instead.) Pages are built with Canvas (below), not
+  # Layout Builder, so Seeds Layouts and Seeds Page are not used.
   - seeds_seo
   - seeds_administration
-  # Seeds Page's config needs it but Seeds Page does not declare it, so the
-  # Seeds Page add-on cannot be enabled without it.
-  - responsive_image_preload
   # Seeds SEO's dependencies, listed so their default config is imported.
   - metatag
   - metatag_open_graph
@@ -57,6 +53,9 @@ install:
   # Languages and navigation, adopted from Drupal CMS.
   - config_language_lock
   - easy_breadcrumb
+  # Visual page building with Drupal Canvas, the page builder Drupal CMS uses.
+  # Needs the restrict_ip patch listed in the Seeds base README.
+  - canvas
 config:
   # Field storages influence the database layout, so they must match exactly.
   # Every feature recipe with its own pages ships the same storages.
@@ -76,6 +75,18 @@ config:
     yoast_seo: '*'
     scheduler: '*'
     easy_breadcrumb: '*'
+    # Canvas needs its own config (image styles, text formats) to work at all.
+    # Its two CKEditor configs are left out: with Editor Advanced Link on Seeds
+    # they fail validation. The global asset library ships empty in config/
+    # (site styles belong in the theme), the same one Seeds site uses.
+    canvas:
+      - canvas.brand_kit.global
+      - canvas.component.marker.page_content
+      - canvas.settings
+      - filter.format.canvas_html_block
+      - filter.format.canvas_html_inline
+      - image.style.canvas_avatar
+      - image.style.canvas_parametrized_width
   actions:
     # Show our feature recipes as "Recommended add-ons". The list ships with
     # this recipe (content/file/recommended-add-ons.yaml).

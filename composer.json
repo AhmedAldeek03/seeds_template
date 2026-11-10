@@ -5,6 +5,7 @@
     "license": "GPL-2.0-or-later",
     "require": {
         "drupal/autosave_form": "^1.11",
+        "drupal/canvas": "^1.12",
         "drupal/config_language_lock": "^1.0",
         "drupal/contact_form_recipe": "1.0.x-dev@dev",
         "drupal/core": "^11.3",

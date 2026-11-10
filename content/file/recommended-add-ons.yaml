@@ -103,16 +103,6 @@ drupal/newsletter_recipe:
     summary: 'Newsletters with Simplenews: a default newsletter, newsletter issues and visitor subscriptions.'
   packageName: drupal/newsletter_recipe
 
-drupal/seeds_page:
-  title: 'Seeds Page'
-  type: module
-  logo: null
-  core: '^11.3'
-  machineName: seeds_page
-  body:
-    summary: 'The Seeds Page content type with paragraph-based sections, Seeds blocks (HTML, tabs, slider, grid, carousel, accordion, modal) and SEO fields.'
-  packageName: drupal/seeds_page
-
 drupal/seeds_performance:
   title: 'Seeds Performance'
   type: module
